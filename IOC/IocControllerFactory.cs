@@ -20,14 +20,7 @@ namespace IOC
 
         protected override IController GetControllerInstance(RequestContext pContext, Type pControllerType)
         {
-            try
-            {
-                return container.Resolve(pControllerType) as Controller;
-            }
-            catch
-            {
-                return null; 
-            }
+            return container.Resolve(pControllerType) as Controller;
         }
 
     }

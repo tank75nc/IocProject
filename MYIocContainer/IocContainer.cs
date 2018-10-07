@@ -11,6 +11,7 @@ namespace MyIocContainer
     {
 
         private readonly List<RegisteredObject> lstRegisteredObjects = new List<RegisteredObject>();
+        private Dictionary<object, RegisteredObject> dicResolvedObjects = new Dictionary<object, RegisteredObject>();
 
 
         public void Register<TTypeToResolve, TConcrete>()
@@ -54,6 +55,7 @@ namespace MyIocContainer
             {
                 var parameters = ResolveConstructorParameters(pRegisteredObject);
                 pRegisteredObject.CreateInstance(parameters.ToArray());
+                dicResolvedObjects.Add(pRegisteredObject.Instance, pRegisteredObject);
             }
             return pRegisteredObject.Instance;
         }
